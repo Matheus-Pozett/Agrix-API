@@ -69,6 +69,7 @@ public class GlobalControllerAdvice {
   public ResponseEntity<String> handlerBadCredentialsException(BadCredentialsException e) {
     return ResponseEntity.status(HttpStatus.FORBIDDEN).body(e.getMessage());
   }
+
   /**
    * Trata todas as exceções não esperadas (bugs, falhas de conexão, etc.).
    * Funciona como um "catch-all" de segurança.

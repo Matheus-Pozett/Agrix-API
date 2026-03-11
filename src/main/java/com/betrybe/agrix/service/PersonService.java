@@ -51,6 +51,15 @@ public class PersonService implements UserDetailsService {
     return person.get();
   }
 
+  /**
+   * Creates a new person with an encrypted password.
+   * This method takes a Person object, encrypts the password using BCrypt hashing algorithm,
+   * and persists the person in the database. The password is hashed for security purposes
+   * before being stored.
+   *
+   * @param person The Person object to be created, containing username and plain text password
+   * @return The saved Person object with the encrypted password
+   */
   public Person create(Person person) {
     String hashedPassword = new BCryptPasswordEncoder().encode(person.getPassword());
     person.setPassword(hashedPassword);
