@@ -6,6 +6,7 @@ import com.betrybe.agrix.exception.FertilizerNotFoundException;
 import java.util.Objects;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -64,6 +65,10 @@ public class GlobalControllerAdvice {
     return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
   }
 
+  @ExceptionHandler(BadCredentialsException.class)
+  public ResponseEntity<String> handlerBadCredentialsException(BadCredentialsException e) {
+    return ResponseEntity.status(HttpStatus.FORBIDDEN).body(e.getMessage());
+  }
   /**
    * Trata todas as exceções não esperadas (bugs, falhas de conexão, etc.).
    * Funciona como um "catch-all" de segurança.
