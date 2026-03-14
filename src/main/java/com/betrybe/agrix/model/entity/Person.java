@@ -1,6 +1,5 @@
 package com.betrybe.agrix.model.entity;
 
-
 import com.betrybe.agrix.security.Role;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -10,14 +9,20 @@ import jakarta.persistence.Id;
 import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-
 
 /**
  * Class representing a person.
  */
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
 public class Person implements UserDetails {
 
   @Id
@@ -31,9 +36,6 @@ public class Person implements UserDetails {
 
   private Role role;
 
-  public Person() {
-  }
-
   /**
    * Instantiates a new Person.
    *
@@ -45,18 +47,6 @@ public class Person implements UserDetails {
     this.username = username;
     this.password = password;
     this.role = role;
-  }
-
-  public Long getId() {
-    return id;
-  }
-
-  public void setId(Long id) {
-    this.id = id;
-  }
-
-  public String getUsername() {
-    return username;
   }
 
   @Override
@@ -79,30 +69,22 @@ public class Person implements UserDetails {
     return true;
   }
 
-  public void setUsername(String username) {
-    this.username = username;
-  }
 
   @Override
   public Collection<? extends GrantedAuthority> getAuthorities() {
-    return List.of();
+    return List.of(new SimpleGrantedAuthority(role.getName()));
   }
 
+  @Override
   public String getPassword() {
-    return password;
+    return this.password;
   }
 
-  public void setPassword(String password) {
-    this.password = password;
+  @Override
+  public String getUsername() {
+    return this.username;
   }
 
-  public Role getRole() {
-    return role;
-  }
-
-  public void setRole(Role role) {
-    this.role = role;
-  }
 
   @Override
   public boolean equals(Object o) {
