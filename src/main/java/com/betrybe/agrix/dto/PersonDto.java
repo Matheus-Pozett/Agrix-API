@@ -3,14 +3,6 @@ package com.betrybe.agrix.dto;
 import com.betrybe.agrix.model.entity.Person;
 import com.betrybe.agrix.security.Role;
 
-/**
- * Data Transfer Object for Person entity.
- * This record encapsulates person information for data transfer between layers.
- *
- * @param id the unique identifier of the person
- * @param username the username of the person
- * @param role the role assigned to the person
- */
 public record PersonDto(
     Long id,
     String username,

@@ -12,13 +12,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-/**
- * Representa uma Fazenda (Farm) no sistema.
- * <p>
- * Esta é a entidade principal que agrupa as plantações (Crops).
- * O tamanho da fazenda é medido em hectares.
- * </p>
- */
 @Entity
 @Table(name = "farm")
 @Getter

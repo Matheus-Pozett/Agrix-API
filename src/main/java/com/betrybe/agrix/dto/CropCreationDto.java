@@ -6,17 +6,6 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import java.time.LocalDate;
 
-
-/**
- * DTO (Data Transfer Object) para a criação de uma nova plantação.
- * <p>
- * Contém as validações de entrada para garantir a integridade dos dados
- * antes de chegarem à camada de serviço.
- * </p>
- *
- * @param name O nome da plantação (Obrigatório).
- * @param plantedArea A área plantada em hectares (Obrigatório e deve ser positiva).
- */
 public record CropCreationDto(
     @NotBlank(message = "Nome não pode estar vazio.")
     String name,
@@ -29,9 +18,9 @@ public record CropCreationDto(
     LocalDate harvestDate
 ) {
   /**
-   * Converte este DTO para uma entidade {@link Crop}.
+   * Converts this DTO to a {@link Crop} entity.
    *
-   * @return Uma nova instância de Crop com os dados fornecidos.
+   * @return A new instance of Crop with the provided data.
    */
   public Crop toEntity() {
     return new Crop(name, plantedArea, plantedDate, harvestDate);

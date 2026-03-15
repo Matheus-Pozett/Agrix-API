@@ -17,9 +17,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-/**
- * Controller responsável pelo gerenciamento de plantações (Crops).
- */
 @RestController
 @RequestMapping("/crops")
 public class CropController {
@@ -30,12 +27,6 @@ public class CropController {
     this.cropService = cropService;
   }
 
-  /**
-   * Lista todas as plantações cadastradas no sistema.
-   *
-   * @return Lista de DTOs de todas as plantações com status 200 (OK).
-   * @see com.betrybe.agrix.service.CropService#findAllCrops()
-   */
   @GetMapping
   public ResponseEntity<List<CropDto>> getAllCrops() {
     List<Crop> crops = cropService.findAllCrops();
@@ -43,28 +34,11 @@ public class CropController {
     return ResponseEntity.ok(cropDtos);
   }
 
-  /**
-   * Busca uma plantação específica pelo seu ID.
-   *
-   * @param id O identificador único da plantação.
-   * @return DTO da plantação encontrada com status 200 (OK).
-   * @see com.betrybe.agrix.service.CropService#findById(Long)
-   */
   @GetMapping("/{id}")
   public ResponseEntity<CropDto> getCropById(@PathVariable Long id) {
     return ResponseEntity.ok(CropDto.fromEntity(cropService.findById(id)));
   }
 
-  /**
-   * Busca plantações por intervalo de data de colheita.
-   *
-   * @param start Data inicial do período de colheita (formato: yyyy-MM-dd). Opcional.
-   * @param end Data final do período de colheita (formato: yyyy-MM-dd). Opcional.
-   * @return Lista de DTOs das plantações com data de colheita dentro do intervalo especificado
-   *         com status 200 (OK). Se os parâmetros não forem fornecidos, retorna todas as
-   *         plantações.
-   * @see com.betrybe.agrix.service.CropService#findByHarvestDate(LocalDate, LocalDate)
-   */
   @GetMapping("/search")
   public ResponseEntity<List<CropDto>> getCropsByHarvestDate(
       @RequestParam(required = false) LocalDate start,

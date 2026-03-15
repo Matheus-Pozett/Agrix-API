@@ -16,11 +16,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
-/**
- * REST controller for managing persons.
- * Handles HTTP requests related to person operations.
- */
 @RestController
 @RequestMapping("/persons")
 public class PersonController {
@@ -31,13 +26,6 @@ public class PersonController {
     this.personService = personService;
   }
 
-  /**
-   * Creates a new person.
-   * This endpoint accepts a person creation request and returns the created person data.
-   *
-   * @param personCreationDto the DTO containing the data for creating a new person
-   * @return a ResponseEntity containing the created PersonDto with HTTP status 201 (Created)
-   */
   @PostMapping
   public ResponseEntity<PersonDto> createPerson(
       @Valid @RequestBody PersonCreationDto personCreationDto
@@ -48,11 +36,6 @@ public class PersonController {
     return ResponseEntity.status(HttpStatus.CREATED).body(personDto);
   }
 
-  /**
-   * Gets all persons.
-   *
-   * @return the all persons
-   */
   @GetMapping
   @PreAuthorize("hasAuthority('ADMIN')")
   public ResponseEntity<List<PersonDto>> getAllPersons() {

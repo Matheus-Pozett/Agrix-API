@@ -1,8 +1,5 @@
 package com.betrybe.agrix.security;
 
-/**
- * Enum representing a Role.
- */
 public enum Role {
   ADMIN("ROLE_ADMIN"),
   MANAGER("ROLE_MANAGER"),

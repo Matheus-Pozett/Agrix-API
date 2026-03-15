@@ -7,8 +7,6 @@ import java.time.temporal.ChronoUnit;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-
-
 /**
  * Service responsible for JWT (JSON Web Token) operations.
  * This service handles the generation of JWT tokens for authenticated users,
@@ -53,12 +51,6 @@ public class TokenService {
     return Instant.now().plus(2, ChronoUnit.HOURS);
   }
 
-  /**
-   * Validate token string.
-   *
-   * @param token the token
-   * @return the string
-   */
   public String validateToken(String token) {
     return JWT.require(algorithm)
       .build()

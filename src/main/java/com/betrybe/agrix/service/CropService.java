@@ -10,9 +10,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-/**
- * Serviço responsável pela lógica de negócio de plantações (Crops).
- */
 @Service
 public class CropService {
   private final CropRepository cropRepository;
@@ -23,33 +20,21 @@ public class CropService {
     this.cropRepository = cropRepository;
     this.fertilizerService = fertilizerService;
   }
-
-  /**
-   * Busca todas as plantações registradas no banco de dados.
-   *
-   * @return Lista de todas as plantações.
-   */
+  
   public List<Crop> findAllCrops() {
     return cropRepository.findAll();
   }
-
-  /**
-   * Busca uma plantação por ID.
-   *
-   * @param cropId O identificador da plantação.
-   * @return A entidade Crop encontrada no banco de dados.
-   * @throws CropNotFoundException Caso a plantação não exista.
-   */
+  
   public Crop findById(Long cropId) {
     return cropRepository.findById(cropId).orElseThrow(CropNotFoundException::new);
   }
 
   /**
-   * Busca plantações por intervalo de data de colheita.
+   * Finds crops by harvest date range.
    *
-   * @param start Data inicial do período de colheita.
-   * @param end Data final do período de colheita.
-   * @return Lista de plantações com data de colheita entre as datas especificadas (inclusive).
+   * @param start The start date of the harvest period.
+   * @param end The end date of the harvest period.
+   * @return A list of crops with a harvest date between the specified dates (inclusive).
    */
   public List<Crop> findByHarvestDate(LocalDate start, LocalDate end) {
     return cropRepository.findByHarvestDateBetween(start, end);

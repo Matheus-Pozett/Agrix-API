@@ -15,10 +15,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-
-/**
- * The type Jwt filter.
- */
 @Component
 public class JwtFilter extends OncePerRequestFilter {
   private final TokenService tokenService;
